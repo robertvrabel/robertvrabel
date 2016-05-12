@@ -1,0 +1,25 @@
+// Foundation variable settings, copied as of 6.2
+@import "settings";
+
+// Core foundation
+@import "foundation";
+
+// Call mixin to get all foundation CSS
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-off-canvas;
+@include foundation-menu-icon;
+@include foundation-float-classes;
+@include foundation-top-bar;
+@include foundation-menu;
+@include foundation-dropdown-menu;
+@include foundation-table;
+
+// Import partials
+@import "_partials/content";
+@import "_partials/table";
+@import "_partials/menu";
