@@ -60,6 +60,9 @@ class Untappd
      */
     public function breweryActivityFeed($options = [])
     {
+        // Data to return
+        $beers = [] ;
+
         // Verify we have the correct options
         if (!isset($options['untappd_brewery_id'])) {
             // Throw exception
