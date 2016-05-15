@@ -2038,7 +2038,7 @@ body {
     clear: both; }
   .top-bar,
   .top-bar ul {
-    background-color: #e6e6e6; }
+    background-color: #312c32; }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -2460,6 +2460,8 @@ table.hover tr:nth-of-type(even):hover {
     border-bottom: 1px solid #CCC;
     margin: 15px 0px 30px 0px;
     color: #333; }
+  .content h2 {
+    font-size: 1.5em; }
 
 table {
   width: 100%; }
@@ -2467,8 +2469,31 @@ table {
 li.menu-text {
   padding-left: 0; }
   li.menu-text a {
-    color: #333;
+    color: #98dafc;
+    font-size: 1.4em;
+    padding: 0;
+    text-transform: uppercase; }
+
+.section-group {
+  margin-bottom: 45px; }
+  .section-group h2 {
+    background: #daad86;
+    color: #fff;
+    padding: 7px;
+    margin: 0 0 15px 0; }
+
+.beer-item {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea; }
+  .beer-item a {
+    color: inherit; }
+  .beer-item .rating {
     font-size: 1.5em;
-    padding: 0; }
+    font-weight: bold;
+    padding-right: 8px; }
+  .beer-item .date {
+    color: #ccc;
+    font-size: .9em; }
 
 /*# sourceMappingURL=app.css.map */

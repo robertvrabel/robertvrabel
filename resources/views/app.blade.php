@@ -22,7 +22,7 @@
         <div class="small-12 columns">
             <div class="top-bar-left">
                 <ul class="menu">
-                    <li class="menu-text"><a href="/">Robert Vrabel</a></li>
+                    <li class="menu-text"><a href="/">robertvrabel.com</a></li>
                 </ul>
             </div>
         </div>

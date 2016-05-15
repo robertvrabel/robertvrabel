@@ -1,0 +1,31 @@
+.section-group {
+    margin-bottom: 45px;
+
+    h2 {
+        background: #daad86;
+        color: #fff;
+        padding: 7px;
+        margin: 0 0 15px 0;
+    }
+}
+
+.beer-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+
+    a {
+        color: inherit;
+    }
+
+    .rating {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding-right: 8px;
+    }
+
+    .date {
+        color: #ccc;
+        font-size: .9em;
+    }
+}
