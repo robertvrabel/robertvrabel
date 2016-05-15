@@ -25,8 +25,8 @@ class Untappd
         $endpoint = 'https://api.untappd.com/v4';
         $method = '/user/checkins/' . $options['untappd_username'];
         $params = [
-            'client_id' => getenv('CLIENT_ID'),
-            'client_secret' => getenv('CLIENT_SECRET'),
+            'client_id' => getenv('UNTAPPD_CLIENT_ID'),
+            'client_secret' => getenv('UNTAPPD_CLIENT_SECRET'),
             'limit' => isset($options['limit']) && $options['limit'] != '' ? $options['limit'] : 10,
         ];
 
@@ -72,8 +72,8 @@ class Untappd
         $endpoint = 'https://api.untappd.com/v4';
         $method = '/brewery/checkins/' . $options['untappd_brewery_id'];
         $params = [
-            'client_id' => getenv('CLIENT_ID'),
-            'client_secret' => getenv('CLIENT_SECRET'),
+            'client_id' => getenv('UNTAPPD_CLIENT_ID'),
+            'client_secret' => getenv('UNTAPPD_CLIENT_SECRET'),
             'limit' => isset($options['limit']) && $options['limit'] != '' ? $options['limit'] : 10,
         ];
 
