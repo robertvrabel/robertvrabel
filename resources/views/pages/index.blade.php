@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>Recent Beer Reviews</h2>
+            <h2>Recent Reviews</h2>
 
             @foreach ($user_activity as $beer)
                 <div class="row beer-item">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>{{ $brewery_activity[0]['brewery']['brewery_name'] }}</h2>
+            <h2>{{ $brewery_activity[0]['brewery']['brewery_name'] }} Reviews</h2>
 
             @foreach ($brewery_activity as $beer)
                 <div class="row beer-item">
