@@ -1,10 +1,20 @@
-li.menu-text {
-    padding-left: 0;
+.top-bar {
+    li {
+        &.menu-text {
+            padding-left: 0;
 
-    a {
-        color: $site-tertiary;
-        font-size: 1.4em;
-        padding: 0;
-        text-transform: uppercase;
+            a {
+                color: $site-tertiary;
+                font-size: 1.4em;
+                padding: 0;
+                text-transform: uppercase;
+            }
+        }
+
+        a {
+            color: #fff;
+        }
     }
+
+
 }

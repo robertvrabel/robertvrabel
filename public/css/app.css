@@ -2466,13 +2466,16 @@ table.hover tr:nth-of-type(even):hover {
 table {
   width: 100%; }
 
-li.menu-text {
+.top-bar li.menu-text {
   padding-left: 0; }
-  li.menu-text a {
+  .top-bar li.menu-text a {
     color: #98dafc;
     font-size: 1.4em;
     padding: 0;
     text-transform: uppercase; }
+
+.top-bar li a {
+  color: #fff; }
 
 .section-group {
   margin-bottom: 45px; }
