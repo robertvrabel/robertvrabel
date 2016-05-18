@@ -11,7 +11,7 @@
                         <a href="{{ $beer['beer']['url'] }}" target="_blank"><img src="{{ $beer['beer']['beer_label'] }}" /></a>
                     </div>
 
-                    <div class="small-9 medium-10 large-10 column">
+                    <div class="small-9 medium-10 large-10 columns">
                         <div><span class="rating">{{ $beer['rating_score'] }}</span> <a href="{{ $beer['beer']['url'] }}" target="_blank">{{ $beer['beer']['beer_name'] }}</a></div>
                         <div class="brewery">{{ $beer['brewery']['brewery_name'] }}</div>
                         <div class="date">{{ $beer['created_at'] }}</div>
@@ -31,7 +31,7 @@
                         <a href="{{ $beer['beer']['url'] }}" target="_blank"><img src="{{ $beer['beer']['beer_label'] }}" /></a>
                     </div>
 
-                    <div class="small-9 medium-10 large-10 column">
+                    <div class="small-9 medium-10 large-10 columns">
                         <div><span class="rating">{{ $beer['rating_score'] }}</span> <a href="{{ $beer['beer']['url'] }}" target="_blank">{{ $beer['beer']['beer_name'] }}</a></div>
                         <div class="brewery"><a href="http://untappd.com/user/{{ $beer['user']['user_name'] }}/" target="_blank">{{ $beer['user']['user_name'] }}</a></div>
                         <div class="date">{{ $beer['created_at'] }}</div>
