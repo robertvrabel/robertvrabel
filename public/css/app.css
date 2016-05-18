@@ -1226,36 +1226,22 @@ h6 {
     line-height: 0; }
 
 h1 {
-  font-size: 1.5rem; }
+  font-size: 3rem; }
 
 h2 {
-  font-size: 1.25rem; }
+  font-size: 2.5rem; }
 
 h3 {
-  font-size: 1.1875rem; }
+  font-size: 1.9375rem; }
 
 h4 {
-  font-size: 1.125rem; }
+  font-size: 1.5625rem; }
 
 h5 {
-  font-size: 1.0625rem; }
+  font-size: 1.25rem; }
 
 h6 {
   font-size: 1rem; }
-
-@media screen and (min-width: 40em) {
-  h1 {
-    font-size: 3rem; }
-  h2 {
-    font-size: 2.5rem; }
-  h3 {
-    font-size: 1.9375rem; }
-  h4 {
-    font-size: 1.5625rem; }
-  h5 {
-    font-size: 1.25rem; }
-  h6 {
-    font-size: 1rem; } }
 
 a {
   color: #2199e8;
@@ -2473,9 +2459,13 @@ table {
     font-size: 1.4em;
     padding: 0;
     text-transform: uppercase; }
+    .top-bar li.menu-text a:hover {
+      color: #98dafc; }
 
 .top-bar li a {
   color: #fff; }
+  .top-bar li a:hover {
+    color: #daad86; }
 
 .section-group {
   margin-bottom: 45px; }
@@ -2485,19 +2475,19 @@ table {
     padding: 7px 15px;
     margin: 0 0 15px 0; }
 
-.beer-item {
+.section-item {
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eaeaea; }
-  .beer-item.last {
+  .section-item.last {
     border-bottom: none; }
-  .beer-item a {
+  .section-item a {
     color: inherit; }
-  .beer-item .rating {
+  .section-item .rating {
     font-size: 1.5em;
     font-weight: bold;
     padding-right: 8px; }
-  .beer-item .date {
+  .section-item .date {
     color: #ccc;
     font-size: .9em; }
 

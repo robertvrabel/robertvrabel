@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Library\Untappd;
+use App\Library\Tumblr;
 
 class HomepageController extends Controller
 {
@@ -10,9 +11,10 @@ class HomepageController extends Controller
      * HomepageController constructor.
      * @param Untappd $untappd
      */
-    public function __construct(Untappd $untappd)
+    public function __construct(Untappd $untappd, Tumblr $tumblr)
     {
         $this->untappd = $untappd;
+        $this->tumblr = $tumblr;
     }
 
     /**
@@ -39,6 +41,18 @@ class HomepageController extends Controller
             'untappd_brewery_id' => $untappd_brewery_id,
         ]);
 
-        return view('pages.index', compact('user_activity', 'brewery_activity', 'untappd_username'));
+        // Get tumblr posts
+        $posts = $this->tumblr->getPosts([
+            'account' => 'nathanvrabel.tumblr.com',
+            'limit' => 3,
+        ]);
+
+        // Get tumblr posts
+        $posts_quotes = $this->tumblr->getPosts([
+            'account' => 'mylifenathanvrabel.tumblr.com',
+            'limit' => 6,
+        ]);
+
+        return view('pages.index', compact('user_activity', 'brewery_activity', 'untappd_username', 'posts', 'posts_quotes'));
     }
 }

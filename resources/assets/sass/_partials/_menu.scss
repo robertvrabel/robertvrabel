@@ -8,11 +8,19 @@
                 font-size: 1.4em;
                 padding: 0;
                 text-transform: uppercase;
+
+                &:hover {
+                    color: $site-tertiary;
+                }
             }
         }
 
         a {
             color: #fff;
+
+            &:hover {
+                color: $site-secondary;
+            }
         }
     }
 

@@ -10,7 +10,8 @@
         "guzzlehttp/guzzle": "^5.3",
         "laracasts/flash": "~2.0",
         "laravelcollective/html": "~5.0",
-        "remic/guzzlecache": "~0.2"
+        "remic/guzzlecache": "~0.2",
+        "tumblr/tumblr": "^0.2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
