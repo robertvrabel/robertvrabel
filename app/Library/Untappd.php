@@ -34,9 +34,9 @@ class Untappd
         $client = GuzzleCache::client();
 
         $response = $client->get($endpoint . $method, [
-            'timeout' => 1,
+            'timeout' => 10,
             'exceptions' => false,
-            'connect_timeout' => 1,
+            'connect_timeout' => 10,
             'query' => $params,
         ]);
 
@@ -81,9 +81,9 @@ class Untappd
         $client = GuzzleCache::client();
 
         $response = $client->get($endpoint . $method, [
-            'timeout' => 1,
+            'timeout' => 10,
             'exceptions' => false,
-            'connect_timeout' => 1,
+            'connect_timeout' => 10,
             'query' => $params,
         ]);
 
