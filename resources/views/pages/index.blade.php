@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>Recent Reviews</h2>
+            <h2>My Recent Reviews</h2>
 
             @foreach ($user_activity as $beer)
-                <div class="row beer-item">
+                <div class="row beer-item @if ($beer == end($user_activity)) last @endif">
                     <div class="small-3 medium-2 large-2 columns">
                         <a href="{{ $beer['beer']['url'] }}" target="_blank"><img src="{{ $beer['beer']['beer_label'] }}" /></a>
                     </div>
@@ -19,14 +19,14 @@
                 </div>
             @endforeach
 
-            <div class="more"><a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank">More Reviews</a></div>
+            <div class="more"><a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank">More Checkins</a></div>
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>{{ $brewery_activity[0]['brewery']['brewery_name'] }} Reviews</h2>
+            <h2>{{ $brewery_activity[0]['brewery']['brewery_name'] }} Activity Feed</h2>
 
             @foreach ($brewery_activity as $beer)
-                <div class="row beer-item">
+                <div class="row beer-item @if ($beer == end($brewery_activity)) last @endif">
                     <div class="small-3 medium-2 large-2 columns">
                         <a href="{{ $beer['beer']['url'] }}" target="_blank"><img src="{{ $beer['beer']['beer_label'] }}" /></a>
                     </div>

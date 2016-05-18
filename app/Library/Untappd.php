@@ -74,7 +74,7 @@ class Untappd
         $params = [
             'client_id' => getenv('UNTAPPD_CLIENT_ID'),
             'client_secret' => getenv('UNTAPPD_CLIENT_SECRET'),
-            'limit' => isset($options['limit']) && $options['limit'] != '' ? $options['limit'] : 10,
+            'limit' => 35,
         ];
 
         // Query for the results
@@ -94,6 +94,12 @@ class Untappd
 
             // Manipulate values for the view
             $beers = $this->manipulateValues($results['response']['checkins']['items']);
+
+            // Filter out the checkins by this user
+            $beers = $this->filterCheckinsByUser($beers, getenv('UNTAPPD_USERNAME'));
+
+            // Limit the beers since we filtered after the API call
+            $beers = array_slice($beers, 0, isset($options['limit']) ? $options['limit'] : 5);
         }
 
         return $beers;
@@ -113,6 +119,27 @@ class Untappd
         }
 
         return $beers;
+    }
+
+    /**
+     * Filter the checkins by a certain user
+     *
+     * @param $beers
+     * @param string $username
+     * @return array
+     */
+    public function filterCheckinsByUser($beers, $username = '')
+    {
+        // Filtered checkins
+        $filtered = [];
+
+        foreach ($beers as $key => $beer) {
+            if($beer['user']['user_name'] != $username) {
+                $filtered[] = $beer;
+            }
+        }
+
+        return $filtered;
     }
 }
 ?>

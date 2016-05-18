@@ -14,6 +14,10 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #eaeaea;
 
+    &.last {
+        border-bottom: none;
+    }
+
     a {
         color: inherit;
     }
@@ -28,4 +32,5 @@
         color: #ccc;
         font-size: .9em;
     }
+
 }
