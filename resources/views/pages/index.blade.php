@@ -19,7 +19,7 @@
                 </div>
             @endforeach
 
-            <div class="more"><a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank">More Checkins</a></div>
+            <a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank" class="more">More Checkins</a>
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
@@ -39,7 +39,7 @@
                 </div>
             @endforeach
 
-            <div class="more"><a href="http://untappd.com/{{ getenv('UNTAPPD_BREWERY') }}" target="_blank">More Checkins</a></div>
+            <a href="http://untappd.com/{{ getenv('UNTAPPD_BREWERY') }}" target="_blank" class="more">More Checkins</a>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
                 </div>
             @endforeach
 
-            <div class="more"><a href="{{ $posts['blog']['url'] }}" target="_blank">More Posts</a></div>
+            <a href="{{ $posts['blog']['url'] }}" target="_blank" class="more">More Posts</a>
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
@@ -77,7 +77,25 @@
                 </div>
             @endforeach
 
-            <div class="more"><a href="{{ $posts_quotes['blog']['url'] }}" target="_blank">More Posts</a></div>
+            <a href="{{ $posts_quotes['blog']['url'] }}" target="_blank" class="more">More Posts</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 medium-12 large-6 columns section-group">
+            <h2>Spotify Playlists</h2>
+
+            <ul class="playlists">
+            @foreach ($playlists as $playlist)
+                <li><a href="{{ $playlist['url'] }}" target="_blank">{{ $playlist['playlist'] }} ({{ $playlist['total_tracks'] }})</a></li>
+            @endforeach
+            </ul>
+
+            <a href="https://open.spotify.com/user/robertvrabel" target="_blank" class="more">More Playlists</a>
+        </div>
+
+        <div class="small-12 medium-12 large-6 columns section-group">
+
         </div>
     </div>
 @endsection

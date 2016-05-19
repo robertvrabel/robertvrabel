@@ -2491,4 +2491,13 @@ table {
     color: #ccc;
     font-size: .9em; }
 
+.playlists {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .playlists li {
+    margin: 0 0 10px 0; }
+    .playlists li a {
+      color: #312c32; }
+
 /*# sourceMappingURL=app.css.map */
