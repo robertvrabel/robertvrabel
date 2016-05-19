@@ -2452,20 +2452,24 @@ table.hover tr:nth-of-type(even):hover {
 table {
   width: 100%; }
 
-.top-bar li.menu-text {
-  padding-left: 0; }
-  .top-bar li.menu-text a {
+.top-bar .top-bar-title {
+  padding: 2px 10px 0 0; }
+  .top-bar .top-bar-title a {
     color: #98dafc;
     font-size: 1.4em;
     padding: 0;
-    text-transform: uppercase; }
-    .top-bar li.menu-text a:hover {
+    text-transform: uppercase;
+    font-weight: bold; }
+    .top-bar .top-bar-title a:hover {
       color: #98dafc; }
 
 .top-bar li a {
   color: #fff; }
   .top-bar li a:hover {
     color: #daad86; }
+
+.top-bar .menu li:first-child a {
+  padding-left: 0; }
 
 .section-group {
   margin-bottom: 45px; }
