@@ -23,9 +23,12 @@
             <div class="top-bar-left">
                 <ul class="menu">
                     <li class="menu-text"><a href="/">robertvrabel.com</a></li>
+                    <li><a href="https://github.com/robertvrabel" target="_blank">Github</a></li>
                     <li><a href="https://www.linkedin.com/in/robertvrabel" target="_blank">Linkedin</a></li>
                     <li><a href="https://twitter.com/robertvrabel" target="_blank">Twitter</a></li>
                     <li><a href="https://facebook.com/Vrabel" target="_blank">Facebook</a></li>
+                    <li><a href="https://open.spotify.com/user/robertvrabel" target="_blank">Spotify</a></li>
+                    <li><a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank">Untappd</a></li>
                 </ul>
             </div>
         </div>
