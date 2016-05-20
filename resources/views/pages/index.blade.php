@@ -39,7 +39,7 @@
                 </div>
             @endforeach
 
-            <a href="http://untappd.com/{{ getenv('UNTAPPD_BREWERY') }}" target="_blank" class="more">More Checkins</a>
+            <a href="http://untappd.com/{{ $untappd_brewery }}" target="_blank" class="more">More Checkins</a>
         </div>
     </div>
 

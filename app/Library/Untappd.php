@@ -1,10 +1,12 @@
 <?php namespace App\Library;
 
-use GuzzleHttp\Client;
 use Remic\GuzzleCache\Facades\GuzzleCache;
 
 class Untappd
 {
+    /**
+     * Untappd constructor.
+     */
     public function __construct()
     {
 
@@ -108,10 +110,10 @@ class Untappd
     /**
      * Manipulate values of the API data for the view
      *
-     * @param $beers
+     * @param array $beers
      * @return mixed
      */
-    public function manipulateValues($beers)
+    public function manipulateValues($beers = [])
     {
         foreach ($beers as $key => $beer) {
             $beers[$key]['created_at'] = date('F jS, Y h:i:sa', strtotime($beer['created_at']));
@@ -124,11 +126,11 @@ class Untappd
     /**
      * Filter the checkins by a certain user
      *
-     * @param $beers
+     * @param array $beers
      * @param string $username
      * @return array
      */
-    public function filterCheckinsByUser($beers, $username = '')
+    public function filterCheckinsByUser($beers = [], $username = '')
     {
         // Filtered checkins
         $filtered = [];
@@ -142,4 +144,3 @@ class Untappd
         return $filtered;
     }
 }
-?>

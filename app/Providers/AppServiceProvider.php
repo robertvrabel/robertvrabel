@@ -23,6 +23,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Tumblr API
+        $this->app->bind('Tumblr\API\Client', function () {
+            return new \Tumblr\API\Client(
+                getenv('TUMBLR_CONSUMER_KEY'),
+                getenv('TUMBLR_SECRET_KEY')
+            );
+        });
+
+        // Spotify API
+        $this->app->bind('SpotifyWebAPI\Session', function () {
+            return new \SpotifyWebAPI\Session(
+                getenv('SPOTIFY_CLIENT_ID'),
+                getenv('SPOTIFY_CLIENT_SECRET'),
+                'http://robertvrabel.com/'
+            );
+        });
     }
 }

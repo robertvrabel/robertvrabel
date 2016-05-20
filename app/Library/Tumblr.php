@@ -2,14 +2,24 @@
 
 use Tumblr\API\Client;
 
+/*
+ * @property Client client
+ */
 class Tumblr
 {
     /**
-     * Tumblr constructor.
+     * @var Client
      */
-    public function __construct()
+    private $client;
+
+    /**
+     * Tumblr constructor.
+     * @param Client $client
+     */
+    public function __construct(Client $client)
     {
-        $this->client = new Client(getenv('TUMBLR_CONSUMER_KEY'), getenv('TUMBLR_SECRET_KEY'));
+        // This will already have the consumer/secret key per the AppServiceProvider
+        $this->client = $client;
     }
 
     /**

@@ -1,16 +1,27 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Library\Untappd;
 use App\Library\Tumblr;
 use App\Library\Spotify;
 
+/**
+ * @property Untappd untappd
+ * @property Tumblr tumblr
+ * @property Spotify spotify
+ */
 class HomepageController extends Controller
 {
+    private $untappd;
+    private $tumblr;
+    private $spotify;
+
     /**
      * HomepageController constructor.
+     *
      * @param Untappd $untappd
+     * @param Tumblr $tumblr
+     * @param Spotify $spotify
      */
     public function __construct(Untappd $untappd, Tumblr $tumblr, Spotify $spotify)
     {
@@ -24,12 +35,16 @@ class HomepageController extends Controller
      *
      * @return Response
      */
-    public function index() {
+    public function index()
+    {
         // Get the untappd username
         $untappd_username = getenv('UNTAPPD_USERNAME');
 
-        // Get the untappd brewery
+        // Get the untappd brewery id
         $untappd_brewery_id = getenv('UNTAPPD_BREWERY_ID');
+
+        // Get the untappd brewery
+        $untappd_brewery = getenv('UNTAPPD_BREWERY');
 
         // Get the users activity
         $user_activity = $this->untappd->activityFeed([
@@ -61,6 +76,14 @@ class HomepageController extends Controller
             'limit' => 10,
         ]);
 
-        return view('pages.index', compact('user_activity', 'brewery_activity', 'untappd_username', 'posts', 'posts_quotes', 'playlists'));
+        return view('pages.index', compact(
+            'user_activity',
+            'brewery_activity',
+            'untappd_username',
+            'untappd_brewery',
+            'posts',
+            'posts_quotes',
+            'playlists'
+        ));
     }
 }

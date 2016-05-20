@@ -3,20 +3,35 @@
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session;
 
+/**
+ * @property Session session
+ * @property SpotifyWebAPI api
+ */
 class Spotify
 {
     /**
-     * Spotify constructor.
+     * @var Session
      */
-    public function __construct()
-    {
-        $this->session = new Session(
-            getenv('SPOTIFY_CLIENT_ID'),
-            getenv('SPOTIFY_CLIENT_SECRET'),
-            'http://robertvrabel.app/'
-        );
-        $this->api = new SpotifyWebAPI();
+    private $session;
 
+    /**
+     * @var Api
+     */
+    private $api;
+
+    /**
+     * Spotify constructor.
+     *
+     * @param Session $session
+     * @param SpotifyWebAPI $spotifyWebAPI
+     */
+    public function __construct(Session $session, SpotifyWebAPI $spotifyWebAPI)
+    {
+        // This will already have the consumer/secret per the AppServiceProvider
+        $this->session = $session;
+        $this->api = $spotifyWebAPI;
+
+        // Always set the access token
         $this->accessToken();
     }
 
@@ -26,10 +41,10 @@ class Spotify
     private function accessToken()
     {
         // Request a access token with optional scopes
-        $scopes = array(
+        $scopes = [
             'playlist-read-private',
-            'user-read-private'
-        );
+            'user-read-private',
+        ];
 
         $this->session->requestCredentialsToken($scopes);
         $accessToken = $this->session->getAccessToken();
@@ -51,9 +66,7 @@ class Spotify
         ));
 
         // Trim the playlists down to the data we need for the view
-        $playlists = $this->trimPlaylists($playlists);
-
-        return $playlists;
+        return $this->trimPlaylists($playlists);
     }
 
     /**
