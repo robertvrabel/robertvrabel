@@ -72,7 +72,7 @@ class Spotify
     /**
      * Trim a playlist down to only what the view needs
      *
-     * @param $playlists
+     * @param Collection $playlists
      * @return array
      */
     public function trimPlaylists(Collection $playlists)

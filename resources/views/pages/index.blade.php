@@ -45,10 +45,10 @@
 
     <div class="row">
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>{{ $posts['blog']['title'] }}</h2>
+            <h2>Nathan Vrabel</h2>
 
-            @foreach ($posts['posts'] as $post)
-                <div class="row section-item @if ($post == end($posts['posts'])) last @endif">
+            @foreach ($posts as $post)
+                <div class="row section-item @if ($post == $posts->last()) last @endif">
                     <div class="small-12 medium-6 columns">
                         @if($post['image_url'] != '')
                             <a href="{{ $post['url'] }}"><img src="{{ $post['image_url'] }}"></a>
@@ -61,14 +61,14 @@
                 </div>
             @endforeach
 
-            <a href="{{ $posts['blog']['url'] }}" target="_blank" class="more">More Posts</a>
+            <a href="http://nathanvrabel.com/" target="_blank" class="more">More Posts</a>
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
             <h2>Nathan Quotes</h2>
 
-            @foreach ($posts_quotes['posts'] as $post)
-                <div class="row section-item @if ($post == end($posts_quotes['posts'])) last @endif">
+            @foreach ($posts_quotes as $post)
+                <div class="row section-item @if ($post == $posts_quotes->last()) last @endif">
                     <div class="small-12 columns">
                         <h4>{!! $post['title'] !!}</h4>
 
@@ -77,7 +77,7 @@
                 </div>
             @endforeach
 
-            <a href="{{ $posts_quotes['blog']['url'] }}" target="_blank" class="more">More Posts</a>
+            <a href="http://mylife.nathanvrabel.com/" target="_blank" class="more">More Posts</a>
         </div>
     </div>
 

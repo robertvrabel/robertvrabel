@@ -1,6 +1,7 @@
 <?php namespace App\Library;
 
 use Tumblr\API\Client;
+use Illuminate\Support\Collection;
 
 /*
  * @property Client client
@@ -36,7 +37,7 @@ class Tumblr
         ]);
 
         // Trim the posts
-        $posts = $this->trimPosts($posts);
+        $posts = $this->trimPosts(collect($posts->posts));
 
         return $posts;
     }
@@ -44,19 +45,12 @@ class Tumblr
     /**
      * Trim the posts data down to only what we need so it is consistent on the view
      *
-     * @param array $posts
+     * @param Collection $posts
      */
-    public function trimPosts($posts = [])
+    public function trimPosts(Collection $posts)
     {
-        // Build the blog info
-        $trimmed['blog']['title'] = isset($posts->blog->title) ? $posts->blog->title : '';
-        $trimmed['blog']['url'] = isset($posts->blog->url) ? $posts->blog->url : '';
-
-        // Build the posts info
-        foreach($posts->posts as $key => $post) {
-            $image_url = isset($post->photos[0]->original_size->url) ? $post->photos[0]->original_size->url : '';
-            $url = isset($post->post_url) ? $post->post_url : '';
-
+        $posts = $posts->map(function ($post) {
+            // Since Tumblr does not have a consistent data type for "title", make one
             if(isset($post->text)) {
                 $title = $post->text;
             }elseif(isset($post->title)) {
@@ -65,6 +59,7 @@ class Tumblr
                 $title = '';
             }
 
+            // Since Tumblr does not have a consistent data type for description, make one
             if(isset($post->caption)) {
                 $description = $post->caption;
             }elseif(isset($post->source)) {
@@ -75,14 +70,14 @@ class Tumblr
                 $description = '';
             }
 
-            $trimmed['posts'][] = [
-                'image_url' => $image_url,
-                'url' => $url,
+            return [
+                'image_url' => isset($post->photos[0]->original_size->url) ? $post->photos[0]->original_size->url : '',
+                'url' => isset($post->post_url) ? $post->post_url : '',
                 'title' => $title,
                 'description' => nl2br($description),
             ];
-        }
+        });
 
-        return $trimmed;
+        return $posts;
     }
 }
