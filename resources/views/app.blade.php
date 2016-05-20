@@ -14,13 +14,15 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <meta class="foundation-mq">
 </head>
 <body>
 
 <div class="top-bar">
     <div class="row">
         <div class="small-12 columns">
-            <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
+            <span data-responsive-toggle="responsive-menu" data-hide-for="top-bar" class="float-right">
                 <button class="menu-icon" type="button" data-toggle></button>
             </span>
 
@@ -63,15 +65,11 @@
 <!-- Scripts -->
 @if (getenv('APP_ENV') == 'local')
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/foundation.min.js"></script>
 @else
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.min.js"></script>
 @endif
 
-@yield('footer')
-<script src="/js/foundation.min.js"></script>
-<script src="/js/app.js"></script>
+<script src="/js/main.js"></script>
 
 </body>
 </html>
