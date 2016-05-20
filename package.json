@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "devDependencies": {
     "gulp": "^3.9.1",
     "foundation-sites": "^6.2.0"
