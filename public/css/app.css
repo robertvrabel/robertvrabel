@@ -1226,36 +1226,22 @@ h6 {
     line-height: 0; }
 
 h1 {
-  font-size: 1.5rem; }
+  font-size: 3rem; }
 
 h2 {
-  font-size: 1.25rem; }
+  font-size: 2.5rem; }
 
 h3 {
-  font-size: 1.1875rem; }
+  font-size: 1.9375rem; }
 
 h4 {
-  font-size: 1.125rem; }
+  font-size: 1.5625rem; }
 
 h5 {
-  font-size: 1.0625rem; }
+  font-size: 1.25rem; }
 
 h6 {
   font-size: 1rem; }
-
-@media screen and (min-width: 40em) {
-  h1 {
-    font-size: 3rem; }
-  h2 {
-    font-size: 2.5rem; }
-  h3 {
-    font-size: 1.9375rem; }
-  h4 {
-    font-size: 1.5625rem; }
-  h5 {
-    font-size: 1.25rem; }
-  h6 {
-    font-size: 1rem; } }
 
 a {
   color: #2199e8;
@@ -2038,7 +2024,7 @@ body {
     clear: both; }
   .top-bar,
   .top-bar ul {
-    background-color: #e6e6e6; }
+    background-color: #312c32; }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -2460,15 +2446,62 @@ table.hover tr:nth-of-type(even):hover {
     border-bottom: 1px solid #CCC;
     margin: 15px 0px 30px 0px;
     color: #333; }
+  .content h2 {
+    font-size: 1.4em; }
 
 table {
   width: 100%; }
 
-li.menu-text {
+.top-bar .top-bar-title {
+  padding: 2px 10px 0 0; }
+  .top-bar .top-bar-title a {
+    color: #98dafc;
+    font-size: 1.4em;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold; }
+    .top-bar .top-bar-title a:hover {
+      color: #98dafc; }
+
+.top-bar li a {
+  color: #fff; }
+  .top-bar li a:hover {
+    color: #daad86; }
+
+.top-bar .menu li:first-child a {
   padding-left: 0; }
-  li.menu-text a {
-    color: #333;
+
+.section-group {
+  margin-bottom: 45px; }
+  .section-group h2 {
+    background: #daad86;
+    color: #fff;
+    padding: 7px 15px;
+    margin: 0 0 15px 0; }
+
+.section-item {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea; }
+  .section-item.last {
+    border-bottom: none; }
+  .section-item a {
+    color: inherit; }
+  .section-item .rating {
     font-size: 1.5em;
-    padding: 0; }
+    font-weight: bold;
+    padding-right: 8px; }
+  .section-item .date {
+    color: #ccc;
+    font-size: .9em; }
+
+.playlists {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .playlists li {
+    margin: 0 0 10px 0; }
+    .playlists li a {
+      color: #312c32; }
 
 /*# sourceMappingURL=app.css.map */

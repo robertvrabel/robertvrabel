@@ -1,0 +1,49 @@
+.section-group {
+    margin-bottom: 45px;
+
+    h2 {
+        background: $site-secondary;
+        color: #fff;
+        padding: 7px 15px;
+        margin: 0 0 15px 0;
+    }
+}
+
+.section-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+
+    &.last {
+        border-bottom: none;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .rating {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding-right: 8px;
+    }
+
+    .date {
+        color: #ccc;
+        font-size: .9em;
+    }
+}
+
+.playlists {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0 0 10px 0;
+
+        a {
+            color: $site-primary;
+        }
+    }
+}
