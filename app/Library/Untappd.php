@@ -1,6 +1,7 @@
 <?php namespace App\Library;
 
 use Remic\GuzzleCache\Facades\GuzzleCache;
+use Illuminate\Support\Collection;
 
 class Untappd
 {
@@ -21,7 +22,7 @@ class Untappd
     public function activityFeed($options = [])
     {
         // Data to return
-        $beers = [] ;
+        $beers = collect([]);
 
         // Build the query
         $endpoint = 'https://api.untappd.com/v4';
@@ -48,7 +49,7 @@ class Untappd
             $results = $response->json();
 
             // Manipulate values for the view
-            $beers = $this->manipulateValues($results['response']['checkins']['items']);
+            $beers = $this->manipulateValues(collect($results['response']['checkins']['items']));
         }
 
         return $beers;
@@ -63,12 +64,7 @@ class Untappd
     public function breweryActivityFeed($options = [])
     {
         // Data to return
-        $beers = [] ;
-
-        // Verify we have the correct options
-        if (!isset($options['untappd_brewery_id'])) {
-            // Throw exception
-        }
+        $beers = collect([]);
 
         // Build the query
         $endpoint = 'https://api.untappd.com/v4';
@@ -95,13 +91,13 @@ class Untappd
             $results = $response->json();
 
             // Manipulate values for the view
-            $beers = $this->manipulateValues($results['response']['checkins']['items']);
+            $beers = $this->manipulateValues(collect($results['response']['checkins']['items']));
 
             // Filter out the checkins by this user
             $beers = $this->filterCheckinsByUser($beers, getenv('UNTAPPD_USERNAME'));
 
             // Limit the beers since we filtered after the API call
-            $beers = array_slice($beers, 0, isset($options['limit']) ? $options['limit'] : 5);
+            $beers = $beers->slice(0, isset($options['limit']) ? $options['limit'] : 5);
         }
 
         return $beers;
@@ -110,37 +106,35 @@ class Untappd
     /**
      * Manipulate values of the API data for the view
      *
-     * @param array $beers
+     * @param Collection $beers
      * @return mixed
      */
-    public function manipulateValues($beers = [])
+    public function manipulateValues(Collection $beers)
     {
-        foreach ($beers as $key => $beer) {
-            $beers[$key]['created_at'] = date('F jS, Y h:i:sa', strtotime($beer['created_at']));
-            $beers[$key]['beer']['url'] = 'http://untappd.com/b/' . $beer['beer']['beer_slug'] . '/' . $beer['beer']['bid'];
-        }
+        // Change some of the values coming from the API
+        $beers = $beers->map(function ($item) {
+            $item['created_at'] = date('F jS, Y h:i:sa', strtotime($item['created_at']));
+            $item['beer']['url'] = 'http://untappd.com/b/' . $item['beer']['beer_slug'] . '/' . $item['beer']['bid'];
+
+            return $item;
+        });
 
         return $beers;
     }
 
     /**
-     * Filter the checkins by a certain user
+     * Filter the checkins by username
      *
-     * @param array $beers
+     * @param Collection $beers
      * @param string $username
      * @return array
      */
-    public function filterCheckinsByUser($beers = [], $username = '')
+    public function filterCheckinsByUser(Collection $beers, $username = '')
     {
-        // Filtered checkins
-        $filtered = [];
+        $beers = $beers->filter(function ($value, $key) use($username) {
+            return $value['user']['user_name'] != $username ? true : false;
+        });
 
-        foreach ($beers as $key => $beer) {
-            if($beer['user']['user_name'] != $username) {
-                $filtered[] = $beer;
-            }
-        }
-
-        return $filtered;
+        return $beers;
     }
 }
