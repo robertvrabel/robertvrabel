@@ -2,6 +2,7 @@
 
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session;
+use Illuminate\Support\Collection;
 
 /**
  * @property Session session
@@ -41,16 +42,13 @@ class Spotify
     private function accessToken()
     {
         // Request a access token with optional scopes
-        $scopes = [
+        $this->session->requestCredentialsToken([
             'playlist-read-private',
             'user-read-private',
-        ];
-
-        $this->session->requestCredentialsToken($scopes);
-        $accessToken = $this->session->getAccessToken();
+        ]);
 
         // Set the token on the API wrapper
-        $this->api->setAccessToken($accessToken);
+        $this->api->setAccessToken($this->session->getAccessToken());
     }
 
     /**
@@ -61,12 +59,14 @@ class Spotify
     public function playlists($options = [])
     {
         // Get playlists
-        $playlists = $this->api->getUserPlaylists($options['username'], array(
-            'limit' => isset($options['limit']) ? $options['limit'] : 10
-        ));
+        $playlists = $this->api->getUserPlaylists(
+            $options['username'], [
+                'limit' => isset($options['limit']) ? $options['limit'] : 10,
+            ]
+        );
 
         // Trim the playlists down to the data we need for the view
-        return $this->trimPlaylists($playlists);
+        return $this->trimPlaylists(collect($playlists->items));
     }
 
     /**
@@ -75,19 +75,16 @@ class Spotify
      * @param $playlists
      * @return array
      */
-    public function trimPlaylists($playlists)
+    public function trimPlaylists(Collection $playlists)
     {
-        // Trimmed info to return
-        $trimmed = [];
-
-        foreach ($playlists->items as $list) {
-            $trimmed[] = [
-                'playlist' => $list->name,
-                'url' => $list->external_urls->spotify,
-                'total_tracks' => $list->tracks->total,
+        $playlists = $playlists->map(function ($item) {
+            return [
+                'playlist' => $item->name,
+                'url' => $item->external_urls->spotify,
+                'total_tracks' => $item->tracks->total,
             ];
-        }
+        });
 
-        return $trimmed;
+        return $playlists;
     }
 }
