@@ -1,3 +1,6 @@
+// Site variables
+@import "vars";
+
 // Foundation variable settings, copied as of 6.2
 @import "settings";
 
@@ -23,3 +26,4 @@
 @import "_partials/content";
 @import "_partials/table";
 @import "_partials/menu";
+@import "_partials/homepage";

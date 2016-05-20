@@ -20,10 +20,27 @@
 <div class="top-bar">
     <div class="row">
         <div class="small-12 columns">
-            <div class="top-bar-left">
-                <ul class="menu">
-                    <li class="menu-text"><a href="/">Robert Vrabel</a></li>
-                </ul>
+            <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
+                <button class="menu-icon" type="button" data-toggle></button>
+            </span>
+
+            <div class="top-bar-title">
+                <a href="/">robertvrabel.com</a>
+            </div>
+
+            <div id="responsive-menu">
+                <div class="top-bar-left">
+                    <ul class="menu">
+                        <li><a href="https://github.com/robertvrabel" target="_blank">Github</a></li>
+                        <li><a href="https://www.linkedin.com/in/robertvrabel" target="_blank">Linkedin</a></li>
+                        <li><a href="https://twitter.com/robertvrabel" target="_blank">Twitter</a></li>
+                        <li><a href="https://facebook.com/Vrabel" target="_blank">Facebook</a></li>
+                        <!--
+                        <li><a href="https://open.spotify.com/user/robertvrabel" target="_blank">Spotify</a></li>
+                        <li><a href="http://untappd.com/user/{{ $untappd_username }}" target="_blank">Untappd</a></li>
+                        -->
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -53,6 +70,7 @@
 @endif
 
 @yield('footer')
+<script src="/js/foundation.min.js"></script>
 <script src="/js/app.js"></script>
 
 </body>
