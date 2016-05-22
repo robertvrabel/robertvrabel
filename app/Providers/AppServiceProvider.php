@@ -35,8 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('SpotifyWebAPI\Session', function () {
             return new \SpotifyWebAPI\Session(
                 getenv('SPOTIFY_CLIENT_ID'),
-                getenv('SPOTIFY_CLIENT_SECRET'),
-                'http://robertvrabel.com/'
+                getenv('SPOTIFY_CLIENT_SECRET')
             );
         });
     }

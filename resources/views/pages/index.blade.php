@@ -23,7 +23,7 @@
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
-            <h2>{{ $brewery_activity[1]['brewery']['brewery_name'] }} Activity Feed</h2>
+            <h2>{{ $brewery_activity->first()['brewery']['brewery_name'] }} Activity Feed</h2>
 
             @foreach ($brewery_activity as $beer)
                 <div class="row section-item @if ($beer == $brewery_activity->last()) last @endif">
@@ -91,7 +91,7 @@
             @endforeach
             </ul>
 
-            <a href="https://open.spotify.com/user/robertvrabel" target="_blank" class="more">More Playlists</a>
+            <a href="https://open.spotify.com/user/{{  $spotify_username }}" target="_blank" class="more">More Playlists</a>
         </div>
 
         <div class="small-12 medium-12 large-6 columns section-group">
