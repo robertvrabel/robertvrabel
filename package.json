@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": false,
   "description": "Source code of http://robertvrabel.com",
   "scripts": {
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:robertvrabel/robertvrabel.git"
-  }
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "foundation-sites": "^6.2.0",
