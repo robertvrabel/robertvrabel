@@ -1,5 +1,7 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-webpack');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,11 +17,20 @@ elixir(function (mix) {
     mix.sass('app.scss', null, { includePaths: ['./node_modules/foundation-sites/scss/'] });
 
     // Combine necessary javascript
-    mix.scripts([
-        './resources/assets/js/app.js'
-    ], 'public/js/app.js', './');
+    mix.webpack('main.js', {
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    exclude: [],
+                    loader: 'babel-loader'
+                }
+            ]
+        }
+    });
+
+    mix.version(['css/app.css', 'js/main.js']);
 
     // Copy CDN javascript for local use only
-    mix.copy('./node_modules/foundation-sites/dist/foundation.min.js', 'public/js/foundation.min.js')
-        .copy('./node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
+    mix.copy('./node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
 });

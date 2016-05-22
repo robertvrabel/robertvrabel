@@ -67,12 +67,15 @@ class HomepageController extends Controller
         // Get tumblr posts
         $posts_quotes = $this->tumblr->getPosts([
             'account' => 'mylifenathanvrabel.tumblr.com',
-            'limit' => 6,
+            'limit' => 4,
         ]);
 
-        // Get Spotify Playlists
+        // Get the spotify user
+        $spotify_username = getenv('SPOTIFY_USERNAME');
+
+        // Get spotify playlists
         $playlists = $this->spotify->playlists([
-            'username' => 'robertvrabel',
+            'username' => $spotify_username,
             'limit' => 10,
         ]);
 
@@ -83,7 +86,8 @@ class HomepageController extends Controller
             'untappd_brewery',
             'posts',
             'posts_quotes',
-            'playlists'
+            'playlists',
+            'spotify_username'
         ));
     }
 }
