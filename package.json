@@ -1,10 +1,15 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
+  "description": "Source code of http://robertvrabel.com",
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:robertvrabel/robertvrabel.git"
+  }
   "devDependencies": {
     "gulp": "^3.9.1",
     "foundation-sites": "^6.2.0",
