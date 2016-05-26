@@ -69,7 +69,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 @endif
 
-<script src="/js/main.js"></script>
+<script src="{{ elixir('js/main.js') }}"></script>
 
 </body>
 </html>
