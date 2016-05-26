@@ -36,10 +36,8 @@ class Tumblr
             'limit' => isset($options['limit']) ? $options['limit'] : 5,
         ]);
 
-        // Trim the posts
-        $posts = $this->trimPosts(collect($posts->posts));
-
-        return $posts;
+        // Return trimmed the posts
+        return $this->trimPosts(collect($posts->posts));
     }
 
     /**
@@ -49,7 +47,7 @@ class Tumblr
      */
     public function trimPosts(Collection $posts)
     {
-        $posts = $posts->map(function ($post) {
+        return $posts->map(function ($post) {
             // Since Tumblr does not have a consistent data type for "title", make one
             if(isset($post->text)) {
                 $title = $post->text;
@@ -77,7 +75,5 @@ class Tumblr
                 'description' => nl2br($description),
             ];
         });
-
-        return $posts;
     }
 }

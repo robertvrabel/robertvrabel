@@ -2,15 +2,16 @@
 
 use Remic\GuzzleCache\Facades\GuzzleCache;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class Untappd
 {
     /**
      * Untappd constructor.
      */
-    public function __construct()
+    public function __construct(Carbon $carbon)
     {
-
+        $this->carbon = $carbon;
     }
 
     /**
@@ -111,15 +112,15 @@ class Untappd
      */
     public function manipulateValues(Collection $beers)
     {
-        // Change some of the values coming from the API
-        $beers = $beers->map(function ($item) {
-            $item['created_at'] = date('F jS, Y h:i:sa', strtotime($item['created_at']));
+       return $beers->map(function ($item) {
+            // Use carbon to convert to eastern timezone
+            $date = $this->carbon->createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', strtotime($item['created_at'])))->timezone('Pacific/Nauru')->setTimezone('America/Toronto');
+
+            $item['created_at'] = date('F jS, Y h:i:sa', strtotime($date->toDateTimeString()));
             $item['beer']['url'] = 'http://untappd.com/b/' . $item['beer']['beer_slug'] . '/' . $item['beer']['bid'];
 
             return $item;
         });
-
-        return $beers;
     }
 
     /**
@@ -131,10 +132,8 @@ class Untappd
      */
     public function filterCheckinsByUser(Collection $beers, $username = '')
     {
-        $beers = $beers->filter(function ($value, $key) use($username) {
+        return $beers->filter(function ($value, $key) use($username) {
             return $value['user']['user_name'] != $username ? true : false;
         });
-
-        return $beers;
     }
 }
