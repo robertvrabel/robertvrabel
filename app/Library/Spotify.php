@@ -77,14 +77,12 @@ class Spotify
      */
     public function trimPlaylists(Collection $playlists)
     {
-        $playlists = $playlists->map(function ($item) {
+        return $playlists->map(function ($item) {
             return [
                 'playlist' => $item->name,
                 'url' => $item->external_urls->spotify,
                 'total_tracks' => $item->tracks->total,
             ];
         });
-
-        return $playlists;
     }
 }
