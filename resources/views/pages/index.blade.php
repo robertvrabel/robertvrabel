@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="small-9 medium-10 large-10 columns">
-                        <div><span class="rating">{{ $beer['rating_score'] }}</span> <a href="{{ $beer['beer']['url'] }}" target="_blank">{{ $beer['beer']['beer_name'] }}</a></div>
+                        <div>@if ($beer['rating_score'] > 0)<span class="rating">{{ $beer['rating_score'] }}</span> @endif<a href="{{ $beer['beer']['url'] }}" target="_blank">{{ $beer['beer']['beer_name'] }}</a></div>
                         <div class="brewery">{{ $beer['brewery']['brewery_name'] }}</div>
                         <div class="date">{{ $beer['created_at'] }}</div>
                     </div>
