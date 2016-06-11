@@ -1,10 +1,11 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use Remic\GuzzleCache\Facades\GuzzleCache;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use App\Contracts\Repositories\UntappdRepositoryContract;
 
-class Untappd
+class UntappdRepository implements UntappdRepositoryContract
 {
     /**
      * Untappd constructor.

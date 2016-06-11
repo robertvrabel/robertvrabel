@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Library\Untappd;
-use App\Library\Tumblr;
-use App\Library\Spotify;
+use App\Contracts\Repositories\UntappdRepositoryContract;
+use App\Contracts\Repositories\TumblrRepositoryContract;
+use App\Contracts\Repositories\SpotifyRepositoryContract;
 
 /**
  * @property Untappd untappd
@@ -12,22 +12,33 @@ use App\Library\Spotify;
  */
 class HomepageController extends Controller
 {
-    private $untappd;
-    private $tumblr;
-    private $spotify;
+    /**
+     * @var UntappdRepository
+     */
+    private $untappdRepository;
+
+    /**
+     * @var TumblrRepository
+     */
+    private $tumblrRepository;
+
+    /**
+     * @var SpotifyRepository
+     */
+    private $spotifyRepository;
 
     /**
      * HomepageController constructor.
      *
-     * @param Untappd $untappd
-     * @param Tumblr $tumblr
-     * @param Spotify $spotify
+     * @param UntappdRepositoryContract $untappdRepository
+     * @param TumblrRepositoryContract $tumblrRepository
+     * @param SpotifyRepositoryContract $spotifyRepository
      */
-    public function __construct(Untappd $untappd, Tumblr $tumblr, Spotify $spotify)
+    public function __construct(UntappdRepositoryContract $untappdRepository, TumblrRepositoryContract $tumblrRepository, SpotifyRepositoryContract $spotifyRepository)
     {
-        $this->untappd = $untappd;
-        $this->tumblr = $tumblr;
-        $this->spotify = $spotify;
+        $this->untappdRepository = $untappdRepository;
+        $this->tumblrRepository = $tumblrRepository;
+        $this->spotifyRepository = $spotifyRepository;
     }
 
     /**
@@ -47,25 +58,25 @@ class HomepageController extends Controller
         $untappd_brewery = getenv('UNTAPPD_BREWERY');
 
         // Get the users activity
-        $user_activity = $this->untappd->activityFeed([
+        $user_activity = $this->untappdRepository->activityFeed([
             'limit' => 5,
             'untappd_username' => $untappd_username,
         ]);
 
         // Get the brewery activity
-        $brewery_activity = $this->untappd->breweryActivityFeed([
+        $brewery_activity = $this->untappdRepository->breweryActivityFeed([
             'limit' => 5,
             'untappd_brewery_id' => $untappd_brewery_id,
         ]);
 
         // Get tumblr posts
-        $posts = $this->tumblr->getPosts([
+        $posts = $this->tumblrRepository->getPosts([
             'account' => 'nathanvrabel.tumblr.com',
             'limit' => 3,
         ]);
 
         // Get tumblr posts
-        $posts_quotes = $this->tumblr->getPosts([
+        $posts_quotes = $this->tumblrRepository->getPosts([
             'account' => 'mylifenathanvrabel.tumblr.com',
             'limit' => 4,
         ]);
@@ -74,7 +85,7 @@ class HomepageController extends Controller
         $spotify_username = getenv('SPOTIFY_USERNAME');
 
         // Get spotify playlists
-        $playlists = $this->spotify->playlists([
+        $playlists = $this->spotifyRepository->playlists([
             'username' => $spotify_username,
             'limit' => 10,
         ]);

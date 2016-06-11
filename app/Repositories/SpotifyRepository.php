@@ -1,14 +1,11 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session;
 use Illuminate\Support\Collection;
+use App\Contracts\Repositories\SpotifyRepositoryContract;
 
-/**
- * @property Session session
- * @property SpotifyWebAPI api
- */
-class Spotify
+class SpotifyRepository implements SpotifyRepositoryContract
 {
     /**
      * @var Session
@@ -54,30 +51,16 @@ class Spotify
     /**
      * Get spotify playlists
      *
+     * @param array $options
      * @return array|object
      */
     public function playlists($options = [])
     {
-        // Get playlists
-        $playlists = $this->api->getUserPlaylists(
+        return collect($this->api->getUserPlaylists(
             $options['username'], [
                 'limit' => isset($options['limit']) ? $options['limit'] : 10,
             ]
-        );
-
-        // Trim the playlists down to the data we need for the view
-        return $this->trimPlaylists(collect($playlists->items));
-    }
-
-    /**
-     * Trim a playlist down to only what the view needs
-     *
-     * @param Collection $playlists
-     * @return array
-     */
-    public function trimPlaylists(Collection $playlists)
-    {
-        return $playlists->map(function ($item) {
+        )->items)->map(function ($item) {
             return [
                 'playlist' => $item->name,
                 'url' => $item->external_urls->spotify,
