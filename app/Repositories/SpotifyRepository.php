@@ -51,6 +51,7 @@ class SpotifyRepository implements SpotifyRepositoryContract
     /**
      * Get spotify playlists
      *
+     * @param array $options
      * @return array|object
      */
     public function playlists($options = [])

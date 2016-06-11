@@ -13,6 +13,7 @@ class TumblrRepository implements TumblrRepositoryContract
 
     /**
      * Tumblr constructor.
+     *
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -24,7 +25,7 @@ class TumblrRepository implements TumblrRepositoryContract
     /**
      * Get the blog posts
      *
-     * @param null $account
+     * @param array $options
      * @return array|mixed
      */
     public function getPosts($options = [])
@@ -42,6 +43,7 @@ class TumblrRepository implements TumblrRepositoryContract
      * Trim the posts data down to only what we need so it is consistent on the view
      *
      * @param Collection $posts
+     * @return array|mixed
      */
     public function trimPosts(Collection $posts)
     {
