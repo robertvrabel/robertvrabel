@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Library\Untappd;
-use App\Library\Tumblr;
-use App\Library\Spotify;
+use App\Contracts\Repositories\UntappdRepositoryContract;
+use App\Contracts\Repositories\TumblrRepositoryContract;
+use App\Contracts\Repositories\SpotifyRepositoryContract;
 
 /**
  * @property Untappd untappd
@@ -23,7 +23,7 @@ class HomepageController extends Controller
      * @param Tumblr $tumblr
      * @param Spotify $spotify
      */
-    public function __construct(Untappd $untappd, Tumblr $tumblr, Spotify $spotify)
+    public function __construct(UntappdRepositoryContract $untappd, TumblrRepositoryContract $tumblr, SpotifyRepositoryContract $spotify)
     {
         $this->untappd = $untappd;
         $this->tumblr = $tumblr;

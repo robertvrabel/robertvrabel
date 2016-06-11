@@ -1,12 +1,10 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use Tumblr\API\Client;
 use Illuminate\Support\Collection;
+use App\Contracts\Repositories\TumblrRepositoryContract;
 
-/*
- * @property Client client
- */
-class Tumblr
+class TumblrRepository implements TumblrRepositoryContract
 {
     /**
      * @var Client

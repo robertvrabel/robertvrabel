@@ -1,14 +1,11 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use SpotifyWebAPI\SpotifyWebAPI;
 use SpotifyWebAPI\Session;
 use Illuminate\Support\Collection;
+use App\Contracts\Repositories\SpotifyRepositoryContract;
 
-/**
- * @property Session session
- * @property SpotifyWebAPI api
- */
-class Spotify
+class SpotifyRepository implements SpotifyRepositoryContract
 {
     /**
      * @var Session

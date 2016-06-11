@@ -38,5 +38,10 @@ class AppServiceProvider extends ServiceProvider
                 getenv('SPOTIFY_CLIENT_SECRET')
             );
         });
+
+        // App Contracts
+        $this->app->bind('App\Contracts\Repositories\SpotifyRepositoryContract', 'App\Repositories\SpotifyRepository');
+        $this->app->bind('App\Contracts\Repositories\TumblrRepositoryContract', 'App\Repositories\TumblrRepository');
+        $this->app->bind('App\Contracts\Repositories\UntappdRepositoryContract', 'App\Repositories\UntappdRepository');
     }
 }
