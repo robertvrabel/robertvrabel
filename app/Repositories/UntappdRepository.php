@@ -1,10 +1,11 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use Remic\GuzzleCache\Facades\GuzzleCache;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
+use App\Contracts\Repositories\UntappdRepositoryContract;
 
-class Untappd
+class UntappdRepository implements UntappdRepositoryContract
 {
     /**
      * Untappd constructor.
@@ -107,16 +108,17 @@ class Untappd
     /**
      * Manipulate values of the API data for the view
      *
+     * @codeCoverageIgnore
      * @param Collection $beers
      * @return mixed
      */
-    public function manipulateValues(Collection $beers)
+    private function manipulateValues(Collection $beers)
     {
        return $beers->map(function ($item) {
             // Use carbon to convert to eastern timezone
-            $date = $this->carbon->createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', strtotime($item['created_at'])))->timezone('Pacific/Nauru')->setTimezone('America/Toronto');
+            $date = $this->carbon->createFromFormat('Y-m-d g:i:s', date('Y-m-d g:i:s', strtotime($item['created_at'])))->timezone('Pacific/Nauru')->setTimezone('America/Toronto');
 
-            $item['created_at'] = date('F jS, Y h:i:sa', strtotime($date->toDateTimeString()));
+            $item['created_at'] = date('F jS, Y g:i:sa', strtotime($date->toDateTimeString()));
             $item['beer']['url'] = 'http://untappd.com/b/' . $item['beer']['beer_slug'] . '/' . $item['beer']['bid'];
 
             return $item;
@@ -126,11 +128,12 @@ class Untappd
     /**
      * Filter the checkins by username
      *
+     * @codeCoverageIgnore
      * @param Collection $beers
      * @param string $username
      * @return array
      */
-    public function filterCheckinsByUser(Collection $beers, $username = '')
+    private function filterCheckinsByUser(Collection $beers, $username = '')
     {
         return $beers->filter(function ($value, $key) use($username) {
             return $value['user']['user_name'] != $username ? true : false;

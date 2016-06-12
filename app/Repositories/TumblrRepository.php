@@ -1,12 +1,10 @@
-<?php namespace App\Library;
+<?php namespace App\Repositories;
 
 use Tumblr\API\Client;
 use Illuminate\Support\Collection;
+use App\Contracts\Repositories\TumblrRepositoryContract;
 
-/*
- * @property Client client
- */
-class Tumblr
+class TumblrRepository implements TumblrRepositoryContract
 {
     /**
      * @var Client
@@ -15,6 +13,7 @@ class Tumblr
 
     /**
      * Tumblr constructor.
+     *
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -26,7 +25,7 @@ class Tumblr
     /**
      * Get the blog posts
      *
-     * @param null $account
+     * @param array $options
      * @return array|mixed
      */
     public function getPosts($options = [])
@@ -43,9 +42,11 @@ class Tumblr
     /**
      * Trim the posts data down to only what we need so it is consistent on the view
      *
+     * @codeCoverageIgnore
      * @param Collection $posts
+     * @return array|mixed
      */
-    public function trimPosts(Collection $posts)
+    private function trimPosts(Collection $posts)
     {
         return $posts->map(function ($post) {
             // Since Tumblr does not have a consistent data type for "title", make one
