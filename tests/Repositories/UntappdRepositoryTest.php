@@ -74,11 +74,7 @@ class UntappdRepositoryTest extends TestCase
             'limit' => 5,
             'untappd_brewery_id' => getenv('UNTAPPD_BREWERY_ID'),
         ])->each(function($item) {
-            if($item['user']['user_name'] == getenv('UNTAPPD_USERNAME')) {
-                $this->assertTrue(false);
-            }else{
-                $this->assertTrue(true);
-            }
+            $item['user']['user_name'] == getenv('UNTAPPD_USERNAME') ? $this->assertTrue(false) : $this->assertTrue(true);
         });
     }
 }

@@ -25,7 +25,7 @@ class TumblrRepositoryTest extends TestCase
 
     /**
      * Initialize the constructor
-     *``
+     *
      * @covers App\Repositories\TumblrRepository::__construct
      * @test
      */
