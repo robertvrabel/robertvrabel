@@ -42,10 +42,11 @@ class TumblrRepository implements TumblrRepositoryContract
     /**
      * Trim the posts data down to only what we need so it is consistent on the view
      *
+     * @codeCoverageIgnore
      * @param Collection $posts
      * @return array|mixed
      */
-    public function trimPosts(Collection $posts)
+    private function trimPosts(Collection $posts)
     {
         return $posts->map(function ($post) {
             // Since Tumblr does not have a consistent data type for "title", make one

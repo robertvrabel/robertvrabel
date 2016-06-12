@@ -39,4 +39,17 @@ class SpotifyRepositoryTest extends TestCase
 
         $this->assertEquals(get_class($spotifyRepository), SpotifyRepository::class);
     }
+
+    /**
+     * @covers App\Repositories\SpotifyRepository::playlists
+     * @test
+     */
+    public function playlists_should_return_users_playlists()
+    {
+        $playlists = $this->spotifyRepository->playlists([
+            'username' => 'robertvrabel'
+        ]);
+
+        $this->assertTrue(count($playlists) > 0);
+    }
 }

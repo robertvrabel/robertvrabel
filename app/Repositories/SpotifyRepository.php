@@ -35,6 +35,8 @@ class SpotifyRepository implements SpotifyRepositoryContract
 
     /**
      * Generate and set an access token for the API
+     * 
+     * @codeCoverageIgnore
      */
     private function accessToken()
     {

@@ -108,10 +108,11 @@ class UntappdRepository implements UntappdRepositoryContract
     /**
      * Manipulate values of the API data for the view
      *
+     * @codeCoverageIgnore
      * @param Collection $beers
      * @return mixed
      */
-    public function manipulateValues(Collection $beers)
+    private function manipulateValues(Collection $beers)
     {
        return $beers->map(function ($item) {
             // Use carbon to convert to eastern timezone
@@ -127,11 +128,12 @@ class UntappdRepository implements UntappdRepositoryContract
     /**
      * Filter the checkins by username
      *
+     * @codeCoverageIgnore
      * @param Collection $beers
      * @param string $username
      * @return array
      */
-    public function filterCheckinsByUser(Collection $beers, $username = '')
+    private function filterCheckinsByUser(Collection $beers, $username = '')
     {
         return $beers->filter(function ($value, $key) use($username) {
             return $value['user']['user_name'] != $username ? true : false;

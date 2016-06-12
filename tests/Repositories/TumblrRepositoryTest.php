@@ -38,4 +38,18 @@ class TumblrRepositoryTest extends TestCase
 
         $this->assertEquals(get_class($tumblrRepository), TumblrRepository::class);
     }
+
+    /**
+     * @covers App\Repositories\TumblrRepository::getPosts
+     * @test
+     */
+    public function getting_posts_should_return_trimmed_posts_and_limit()
+    {
+        $posts = $this->tumblrRepository->getPosts([
+            'account' => 'nathanvrabel.tumblr.com',
+            'limit' => 3,
+        ]);
+
+        $this->assertCount(3, $posts);
+    }
 }

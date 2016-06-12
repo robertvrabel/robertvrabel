@@ -38,12 +38,12 @@ class HomepageControllerTest extends TestCase
     }
 
     /**
-     * @covers App\Http\Controllers\FirstCheckinController::index
+     * @covers App\Http\Controllers\HomepageController::index
      * @test
      */
     public function index_should_show_homepage()
     {
         $this->visit('/')
-            ->see('ROBERTVRABEL.COM');
+            ->see('robertvrabel.com');
     }
 }
